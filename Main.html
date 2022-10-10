@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ComicVerse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/topNav.css">
+  <link rel="stylesheet" href="CSS/slideshow.css">
+  <link rel="stylesheet" href="CSS/midpannel.css">
+  <style>
+    ul {
+      height: 30px;
+      margin: 0px;
+    }
+
+    body {
+      font-family: Verdana, sans-serif;
+      background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #333333;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      padding: 4% 2%;
+      box-sizing: border-box;
+      height: 100vh;
+    }
+
+    .box {
+      flex: 1;
+      overflow: hidden;
+      transition: .5s;
+      margin: 0 2%;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
+      line-height: 0;
+    }
+
+    .box>img {
+      width: 200%;
+      height: calc(100% - 10vh);
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .box>span {
+      font-size: 3.8vh;
+      display: block;
+      text-align: center;
+      height: 10vh;
+      line-height: 2.6;
+    }
+
+    .box:hover {
+      flex: 1 1 30%;
+    }
+
+    .box:hover>img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--TOP NAVIGATION -->
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" hidden>
+      <symbol id="arrow" viewbox="0 0 16 16">
+        <polyline points="4 6, 8 10, 12 6" stroke="#000" stroke-width="2" fill="transparent" stroke-linecap="round" />
+      </symbol>
+    </svg>
+    <nav id="site-navigation" class="site-navigation" aria-label="Clickable Menu Demonstration">
+      <ul class="main-menu clicky-menu no-js">
+        <li>
+          <a href="#">ComicVerse</a>
+        </li>
+        <li>
+          <a href="#">COMMUNITY
+            <svg aria-hidden="true" width="16" height="16">
+              <use xlink:href="#arrow" />
+            </svg>
+          </a>
+          <ul>
+            <li><a href="#">Join as Creator</a></li>
+            <li><a href="#">Follow on Discord</a></li>
+            <li><a href="#">Follow on Reddit</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">POPULAR
+            <svg aria-hidden="true" width="16" height="16">
+              <use xlink:href="#arrow" />
+            </svg>
+          </a>
+          <ul>
+            <li><a href="#">NEW & TRENDINGS</a></li>
+            <li><a href="#">ORIGINAL BY GENRES</a></li>
+            <li><a href="#">CANVAS BY GENRES</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">MY LIBRARY</a>
+        </li>
+        <li>
+          <a href="#">JOIN US
+            <svg aria-hidden="true" width="16" height="16">
+              <use xlink:href="#arrow" />
+            </svg>
+          </a>
+          <ul>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="signup.html">SIGN UP</a></li>
+            <li><a href="#">JOIN PRIME</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <script>
+
+      (function () {
+
+        'use strict';
+
+        const ClickyMenus = function (menu) {
+
+          // DOM element(s)
+          let container = menu.parentElement,
+            currentMenuItem,
+            i,
+            len;
+
+          this.init = function () {
+            menuSetup();
+            document.addEventListener('click', closeOpenMenu);
+          }
+          function toggleOnMenuClick(e) {
+
+            const button = e.currentTarget;
+
+            if (currentMenuItem && button !== currentMenuItem) {
+              toggleSubmenu(currentMenuItem);
+            }
+
+            toggleSubmenu(button);
+
+          };
+
+          function toggleSubmenu(button) {
+
+            const submenu = document.getElementById(button.getAttribute('aria-controls'));
+
+            if ('true' === button.getAttribute('aria-expanded')) {
+
+              button.setAttribute('aria-expanded', false);
+              submenu.setAttribute('aria-hidden', true);
+              currentMenuItem = false;
+
+            } else {
+
+              button.setAttribute('aria-expanded', true);
+              submenu.setAttribute('aria-hidden', false);
+              preventOffScreenSubmenu(submenu);
+              currentMenuItem = button;
+
+            }
+
+          };
+
+          function preventOffScreenSubmenu(submenu) {
+
+            const screenWidth = window.innerWidth ||
+              document.documentElement.clientWidth ||
+              document.body.clientWidth,
+              parent = submenu.offsetParent,
+              menuLeftEdge = parent.getBoundingClientRect().left,
+              menuRightEdge = menuLeftEdge + submenu.offsetWidth;
+
+            if (menuRightEdge + 32 > screenWidth) { // adding 32 so it's not too close
+              submenu.classList.add('sub-menu--right');
+            }
+
+          }
+
+          function closeOnEscKey(e) {
+
+            if (27 === e.keyCode) {
+
+              // we're in a submenu item
+              if (null !== e.target.closest('ul[aria-hidden="false"]')) {
+                currentMenuItem.focus();
+                toggleSubmenu(currentMenuItem);
+
+                // we're on a parent item
+              } else if ('true' === e.target.getAttribute('aria-expanded')) {
+                toggleSubmenu(currentMenuItem);
+              }
+
+            }
+
+          }
+
+          function closeOpenMenu(e) {
+
+            if (currentMenuItem && !e.target.closest('#' + container.id)) {
+              toggleSubmenu(currentMenuItem);
+            }
+
+          };
+
+          function menuSetup() {
+
+            menu.classList.remove('no-js');
+
+            menu.querySelectorAll('ul').forEach((submenu) => {
+
+              const menuItem = submenu.parentElement;
+
+              if ('undefined' !== typeof submenu) {
+
+                let button = convertLinkToButton(menuItem);
+
+                setUpAria(submenu, button);
+
+                // bind event listener to button
+                button.addEventListener('click', toggleOnMenuClick);
+                menu.addEventListener('keyup', closeOnEscKey);
+
+              }
+
+            });
+
+          };
+          function convertLinkToButton(menuItem) {
+
+            const link = menuItem.getElementsByTagName('a')[0],
+              linkHTML = link.innerHTML,
+              linkAtts = link.attributes,
+              button = document.createElement('button');
+
+            if (null !== link) {
+
+              // set button content and attributes
+              button.innerHTML = linkHTML.trim();
+              for (i = 0, len = linkAtts.length; i < len; i++) {
+                let attr = linkAtts[i];
+                if ('href' !== attr.name) {
+                  button.setAttribute(attr.name, attr.value);
+                }
+              }
+
+              menuItem.replaceChild(button, link);
+
+            }
+
+            return button;
+
+          }
+
+          function setUpAria(submenu, button) {
+
+            const submenuId = submenu.getAttribute('id');
+
+            let id;
+            if (null === submenuId) {
+              id = button.textContent.trim().replace(/\s+/g, '-').toLowerCase() + '-submenu';
+            } else {
+              id = menuItemId + '-submenu';
+            }
+
+            // set button ARIA
+            button.setAttribute('aria-controls', id);
+            button.setAttribute('aria-expanded', false);
+
+            // set submenu ARIA
+            submenu.setAttribute('id', id);
+            submenu.setAttribute('aria-hidden', true);
+
+          }
+
+        }
+
+        /* Create a ClickMenus object and initiate menu for any menu with .clicky-menu class */
+        document.addEventListener('DOMContentLoaded', function () {
+          const menus = document.querySelectorAll('.clicky-menu');
+
+          menus.forEach(menu => {
+
+            let clickyMenu = new ClickyMenus(menu);
+            clickyMenu.init();
+
+          });
+        });
+
+      }());
+    </script>
+  </div>
+
+
+  <!--MAIN BODY-->
+
+  <!--mid pannel-->
+  <div style="text-align: center;">
+    <h1 style="color: white;font-family: 'Alkalami', serif;font-size: 64px;line-height: 100%;">Dive in ComicVerse! with
+      10000s of comic</h1>
+    <center>
+      <div class="topnav" style="background-color: rgb(255, 255, 255);border-radius: 15px; width: 90%;height: 28px;">
+        <a href="#">Action</a>
+        <a href="#">Romance</a>
+        <a href="#">Fictions</a>
+        <a href="#">Adventure</a>
+        <a href="#">Ecchi</a>
+        <a href="#">Horror</a>
+        <a href="#">Erotic</a>
+        <a href="#">Sci-fi</a>
+        <a href="#">HighSchool</a>
+        <a href="#">Our Special</a>
+        <a href="#">Newly Realease</a>
+      </div>
+    </center>
+  </div>
+
+  <br>
+
+  <!--Slideshow-->
+  <div>
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <img src="Images/1.jpg" style="width: 100%;">
+      </div>
+
+      <div class="mySlides fade">
+        <img src="https://wallpapercave.com/wp/wp8339960.jpg" style="width: 100%;">
+      </div>
+
+      <div class="mySlides fade">
+        <img src="Images/2.jpg" style="width: 100%;">
+      </div>
+
+      <div class="mySlides fade">
+        <img src="Images/3.jpg" style="width: 100%;">
+      </div>
+
+      <div class="mySlides fade">
+        <img src="https://images7.alphacoders.com/102/1025043.jpg" style="width: 100%;">
+      </div>
+      
+     
+    </div>
+    <br>
+
+    <div style="text-align:center">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <script>
+      let slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2500);
+      }
+    </script>
+  </div>
+
+
+  <!--Image Grid-->
+  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
+    <div class="box" style="color: white;">
+      <img src="https://i.pinimg.com/originals/f1/88/f1/f188f1c787a3b84b6202181816e56bce.jpg">
+      <span>Rent a GirlFriend</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://wallpapercave.com/wp/wp8326506.jpg">
+      <span>Attack on Titans</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://wallpaperaccess.com/full/3247127.jpg">
+      <span>One Piece</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://wallpaperaccess.com/full/1886099.jpg">
+      <span>Demon Slice</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://wallpaperaccess.com/full/552397.jpg">
+      <span>Bleach</span>
+    </div>
+  </div>
+  <!--2nd line-->
+  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
+    <div class="box" style="color: white;">
+      <img src="http://m.gettywallpapers.com/wp-content/uploads/2021/11/Spy-X-Family-Wallpaper-4k.jpg">
+      <span>Spy x Family</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://images7.alphacoders.com/594/594038.jpg">
+      <span>Fate/Zero</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://www.anime-planet.com/images/anime/screenshots/overflow-14224-1.jpg">
+      <span>Overflow</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://animecorner.me/wp-content/uploads/2021/09/kei-sasuga-domestic-kanojo.png">
+      <span>Domestic GirlFriend</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://wallpaperstock.net/naruto-shippuden%2c-anime-wallpapers_53886_1920x1080.jpg">
+      <span>Naruto</span>
+    </div>
+  </div>
+  <!--3rd line-->
+  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
+    <div class="box" style="color: white;">
+      <img src="https://images3.alphacoders.com/721/thumb-1920-721711.jpg">
+      <span>Maou No Testament</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://pic-bstarstatic.akamaized.net/ugc/b68fba906c8ebf614d08b8ea1730ee16.jpg@720w_405h_1e_1c_1f.webp">
+      <span>Masou Gakuen HxH</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="Images/7.jpg">
+      <span>Overlord</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="https://c4.wallpaperflare.com/wallpaper/321/309/78/fullmetal-alchemist-fullmetal-alchemist-alphonse-elric-edward-elric-wallpaper-preview.jpg">
+      <span>FullMetal</span>
+    </div>
+    <div class="box" style="color: white;">
+      <img src="Images/5.jpg">
+      <span>Jujutsu Kaisen</span>
+    </div>
+  </div>
+
+
+
+  <!--FOORTER-->
+
+
+</body>
+
+</html>
