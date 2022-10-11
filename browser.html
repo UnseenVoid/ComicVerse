@@ -1,76 +1,130 @@
-<!DOCTYPE html>
+<!--<div class="column">
+    <img src="https://static.wikia.nocookie.net/demon-lord-retry/images/6/68/Demon_Lord%2C_Retry%21_Volume_5.jpg/revision/latest?cb=20201117232442" style="width: 100%;">
+</div>
+<div class="column">
+    <img src="https://i.imgur.com/vkupTee.jpeg" style="width:100%">
+</div>-->
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>ComicVerse</title>
+  <title>Browser</title>
   <!--font-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
 
-  <!--external css-->
-  <link rel="stylesheet" href="CSS/topNav.css">
-  <link rel="stylesheet" href="CSS/slideshow.css">
-  <link rel="stylesheet" href="CSS/midpannel.css">
+  <link rel="stylesheet" href="browser.css">
   <style>
-    ul {
-      height: 30px;
-      margin: 0px;
-    }
-
     body {
       font-family: Verdana, sans-serif;
-      background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+      background-image: linear-gradient(135deg, #664df5 10%, #74fdf2 100%);
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: #000000;
     }
 
-    .container {
-      display: flex;
-      width: 100%;
-      padding-left: 3%;
-      padding-top: 1%;
-      padding-right: 3%;
-      box-sizing: border-box;
-      height: 100vh;
-    }
-
-    .box {
-      flex: 1;
-      overflow: hidden;
-      transition: .5s;
-      margin: 0 2%;
-      box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
-      line-height: 0;
-    }
-
-    .box>img {
-      width: 200%;
-      height: calc(100% - 10vh);
-      object-fit: cover;
-      transition: .5s;
-    }
-
-    .box>span {
-      font-size: 20px;
-      display: block;
+    .searchbox {
+      margin-top: 50px;
+      margin-left: 4%;
+      margin-right: 4%;
+      margin-bottom: 1%;
+      width: 92%;
+      height: auto;
+      font-size: 44px;
       text-align: center;
-      height: 10vh;
-      line-height: 2.6;
+      border-radius: 25px;
+      border: 5px solid #000000;
+      background-color: white;
+      padding-bottom: 5px;
     }
 
-    .box:hover {
-      flex: 1 1 30%;
+    .dropdown-check-list {
+      display: inline-block;
     }
 
-    .box:hover>img {
-      width: 100%;
-      height: 100%;
+    .dropdown-check-list .anchor {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      padding-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: white;
+      border-radius: 20px;
+      width: 300px;
+      margin-left: 10px;
+      font-size: 14px;
+      font-family: Verdana, sans-serif;
+      font-weight: bold;
+    }
+
+    .dropdown-check-list .anchor:after {
+      position: absolute;
+      content: "";
+      border-left: 2px solid black;
+      border-top: 2px solid black;
+      padding: 5px;
+      right: 20px;
+      top: 20%;
+      -moz-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+    }
+
+
+    .dropdown-check-list .anchor:active:after {
+      right: 20px;
+      top: 20%;
+    }
+
+    .dropdown-check-list ul.items {
+      padding-left: 5px;
+      display: none;
+      margin: 15px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+    }
+
+    .dropdown-check-list ul.items li {
+      list-style: none;
+    }
+
+
+    .dropdown-check-list.visible .anchor {
+      color: #0094ff;
+    }
+
+    .dropdown-check-list.visible .items {
+      display: block;
+    }
+
+    .center {
+      margin: auto;
+      width: 73%;
+    }
+
+    .column img {
+      margin-top: 8px;
+      vertical-align: middle;
+      border-radius: 20px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    .column {
+      flex: 20%;
+      padding: 5px;
     }
   </style>
+
 </head>
 
 <body>
@@ -85,7 +139,7 @@
     <nav id="site-navigation" class="site-navigation" aria-label="Clickable Menu Demonstration">
       <ul class="main-menu clicky-menu no-js">
         <li>
-          <a href="#">ComicVerse</a>
+          <a href="index.html">ComicVerse</a>
         </li>
         <li>
           <a href="#">COMMUNITY
@@ -94,7 +148,7 @@
             </svg>
           </a>
           <ul>
-            <li><a href="#">Follow on Facebook</a></li>
+            <li><a href="#">Join as Creator</a></li>
             <li><a href="#">Follow on Discord</a></li>
             <li><a href="#">Follow on Reddit</a></li>
           </ul>
@@ -112,7 +166,7 @@
           </ul>
         </li>
         <li>
-          <a href="browser.html">BROWSE</a>
+          <a href="#">BROWSE</a>
         </li>
         <li>
           <a href="#">JOIN US
@@ -123,7 +177,7 @@
           <ul>
             <li><a href="login.html">LOGIN</a></li>
             <li><a href="signup.html">SIGN UP</a></li>
-            <li><a href="pricing.html">BECOME MEGA FAN</a></li>
+            <li><a href="pricing.html">JOIN PRIME</a></li>
           </ul>
         </li>
       </ul>
@@ -309,182 +363,94 @@
     </script>
   </div>
 
-  <br>
-  <!--MAIN BODY-->
+  <!--Search-->
+  <input type="text" placeholder="Search your Favourite Comic" class="searchbox">
 
-  <!--mid pannel-->
-  <div style="text-align: center;">
-    <h1 style="color: white;font-family: 'Alkalami', serif;font-size: 64px;line-height: 100%;">Dive in ComicVerse! with
-      10000s of comic</h1>
-    <center>
-      <div class="topnav" style="background-color: rgb(255, 255, 255);border-radius: 15px; width: 90%;height: 28px;">
-        <a href="#">Action</a>
-        <a href="#">Romance</a>
-        <a href="#">Fictions</a>
-        <a href="#">Adventure</a>
-        <a href="#">Ecchi</a>
-        <a href="#">Horror</a>
-        <a href="#">Erotic</a>
-        <a href="#">Sci-fi</a>
-        <a href="#">HighSchool</a>
-        <a href="#">Our Special</a>
-        <a href="#">Newly Realease</a>
+  <div class="center">
+
+    <div style="display: flex;align-items: baseline;">
+      <p style="margin-left: 60px;font-family: 'Alkalami',serif;font-size: 16px;line-height: 0%;padding-top: 3px;">
+        Filter:
+      </p>
+
+      <div id="list1" class="dropdown-check-list" tabindex="100">
+        <span class="anchor">Select GENRES</span>
+        <ul class="items" style="margin-top: 5px;width: 96%;">
+          <p style="font-size: 3px;"><br></p>
+          <li><input type="checkbox" />Action</li>
+          <li><input type="checkbox" />Adventure</li>
+          <li><input type="checkbox" />Comedy</li>
+          <li><input type="checkbox" />Drama</li>
+          <li><input type="checkbox" />Slice of life</li>
+          <li><input type="checkbox" />Fantasy</li>
+          <li><input type="checkbox" />Horror</li>
+          <li><input type="checkbox" />Mystery</li>
+          <li><input type="checkbox" />Psychological</li>
+          <li><input type="checkbox" />Romance</li>
+          <li><input type="checkbox" />sci-fi</li>
+          <li><input type="checkbox" />Harem</li>
+          <li><input type="checkbox" />Ecchi</li>
+          <li><input type="checkbox" />Hentai</li>
+          <li><input type="checkbox" />Erotic</li>
+          <li><input type="checkbox" />Isekai</li>
+          <li><input type="checkbox" />Reverse Harem</li>
+          <li><input type="checkbox" />Shoujo</li>
+          <li><input type="checkbox" />Shounen</li>
+          <li><input type="checkbox" />Yuri</li>
+          <p style="font-size: 3px;"><br></p>
+        </ul>
       </div>
-    </center>
+      <p
+        style="margin-left: 20px;font-family: 'Alkalami',serif;font-size: 16px;line-height: 0%;padding-top: 3px;margin-right: 10px;">
+        Sort
+        By:
+      </p>
+      <div style="display: flex;align-self: flex-end;">
+        <input type="checkbox" name="" style="margin-bottom: 8px;">
+        <p style="font-family: 'Alkalami',serif;font-size: 16px;line-height: 0%;padding-top: 3px;margin-right: 10px;">
+          Popularity Highest to
+          lowest</p>
+        <input type="checkbox" name="" style="margin-bottom: 8px;">
+        <p style="font-family: 'Alkalami',serif;font-size: 16px;line-height: 0%;padding-top: 3px;">Popularity Lowest to
+          Highest</p>
+      </div>
+    </div>
+
   </div>
+  <script>
+    var checkList = document.getElementById('list1');
+    checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+      if (checkList.classList.contains('visible'))
+        checkList.classList.remove('visible');
+      else
+        checkList.classList.add('visible');
+    }
+  </script>
 
-  <br>
-
-  <!--Slideshow-->
-  <div>
-    <div class="slideshow-container">
-
-      <div class="mySlides fade">
-        <img src="https://wallpaperaccess.com/full/2410292.jpg" style="width: 100%;">
-      </div>
-
-      <div class="mySlides fade">
-        <img src="Images/1.jpg" style="width: 100%;">
-      </div>
-
-      <div class="mySlides fade">
-        <img src="https://wallpapercave.com/wp/wp8339960.jpg" style="width: 100%;">
-      </div>
-
-      <div class="mySlides fade">
-        <img src="Images/2.jpg" style="width: 100%;">
-      </div>
-
-      <div class="mySlides fade">
-        <img src="Images/3.jpg" style="width: 100%;">
-      </div>
-
-      <div class="mySlides fade">
-        <img src="https://images7.alphacoders.com/102/1025043.jpg" style="width: 100%;">
-      </div>
-
-
+  <div class="row">
+    <div class="column">
+      <img src="https://images3.alphacoders.com/934/thumb-1920-934641.jpg" style="width:100%">
     </div>
-    <br>
-
-    <div style="text-align:center">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+    <div class="column">
+      <img src="Images/11.jpg" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="https://images.alphacoders.com/901/901101.png" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="https://wallpaperaccess.com/full/2410292.jpg" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="https://wallpaperaccess.com/full/693425.jpg" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="https://i.pinimg.com/originals/bf/16/a6/bf16a658662656209bcaacaa76ca771a.jpg" style="width:100%">
     </div>
 
-    <script>
-      let slideIndex = 0;
-      showSlides();
-
-      function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        setTimeout(showSlides, 2500);
-      }
-    </script>
   </div>
 
 
-  <!--Image Grid-->
-  
-  <br>
-  <!--1st line-->
-  <div style="display: flex;">
-    <h2 style="padding-left: 4.5%; color:rgb(0, 0, 0);font-family: 'Alkalami', serif; line-height: 10px;padding-right: 0px;margin-bottom: 16px;margin-top: 16px;">New Trendings</h2>
-    <hr style="width: 75%;color: black;height: 10px; background-color: #000000;margin-top: 14px;margin-left: 010px;margin-right: 0px;" noshade="">
-  </div>
-
-
-  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
-    <div class="box" style="color: white;">
-      <img src="https://i.pinimg.com/originals/f1/88/f1/f188f1c787a3b84b6202181816e56bce.jpg">
-      <span>Rent a GirlFriend</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://wallpapercave.com/wp/wp8326506.jpg">
-      <span>Attack on Titans</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://wallpaperaccess.com/full/3247127.jpg">
-      <span>One Piece</span>
-    </div>
-    <div class="box" style="color: rgb(255, 255, 255);">
-      <img src="https://wallpaperaccess.com/full/1886099.jpg">
-      <span>Demon Slice</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://wallpaperaccess.com/full/552397.jpg">
-      <span>Bleach</span>
-    </div>
-  </div>
-  <!--2nd line-->
-  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
-    <div class="box" style="color: white;">
-      <img src="Images/8.jpg">
-      <span>Spy x Family</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://images7.alphacoders.com/594/594038.jpg">
-      <span>Fate/Zero</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://www.anime-planet.com/images/anime/screenshots/overflow-14224-1.jpg">
-      <span>Overflow</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://animecorner.me/wp-content/uploads/2021/09/kei-sasuga-domestic-kanojo.png">
-      <span>Domestic GirlFriend</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://wallpaperstock.net/naruto-shippuden%2c-anime-wallpapers_53886_1920x1080.jpg">
-      <span>Naruto</span>
-    </div>
-  </div>
-  <!--3rd line-->
-  <div class="container" style="width: 100%; height: 10%;font-family: 'Alkalami', serif;">
-    <div class="box" style="color: white;">
-      <img src="https://images3.alphacoders.com/721/thumb-1920-721711.jpg">
-      <span>Maou No Testament</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="https://pic-bstarstatic.akamaized.net/ugc/b68fba906c8ebf614d08b8ea1730ee16.jpg@720w_405h_1e_1c_1f.webp">
-      <span>Masou Gakuen HxH</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="Images/7.jpg">
-      <span>Overlord</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img
-        src="https://c4.wallpaperflare.com/wallpaper/321/309/78/fullmetal-alchemist-fullmetal-alchemist-alphonse-elric-edward-elric-wallpaper-preview.jpg">
-      <span>FullMetal</span>
-    </div>
-    <div class="box" style="color: white;">
-      <img src="Images/5.jpg">
-      <span>Jujutsu Kaisen</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-  <!--FOORTER-->
-
+  <!--image grid-->
 
 </body>
 

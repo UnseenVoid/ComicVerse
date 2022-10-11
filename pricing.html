@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .column img {
+            margin-top: 8px;
+            vertical-align: middle;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Create three equal columns that sits next to each other */
+        .column {
+            flex: 33.33%;
+            padding: 5px;
+        }
+
+        .columns {
+            align-self: center;
+            float: left;
+            width: 33.3%;
+            padding: 8px;
+            margin-bottom: 1%;
+            margin-top: 0.5%;
+
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid rgb(255, 255, 255);
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .price:hover {
+            box-shadow: 0 10px 22px 10px rgba(0, 0, 0, 0.658)
+        }
+
+        .price .header {
+            background-color: rgb(29, 29, 29);
+            color: white;
+            font-size: 25px;
+        }
+
+        .price li {
+            border-bottom: 1px solid #eee;
+            padding: 13px;
+            text-align: center;
+        }
+
+        .button {
+            background-image: linear-gradient(135deg, #4a3fee 10%, #a02bce 100%);
+            border: none;
+            color: white;
+            padding-top: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 1px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .columns {
+                width: 100%;
+            }
+        }
+
+        body {
+            font-family: 'Alkalami', serif;
+            background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!--header-->
+    <br>
+    <h2 style="text-align:center;font-size: 44px;line-height: 0;color: black;">Over 10000's of Exciting comic</h2>
+    <p style="text-align:center;font-size: 20px;line-height: 1;">Story will go on forever! 💕</p>
+    <div class="row">
+        <div class="column">
+            <img src="https://images3.alphacoders.com/934/thumb-1920-934641.jpg" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="Images/11.jpg" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="https://images.alphacoders.com/901/901101.png" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="https://wallpaperaccess.com/full/2410292.jpg" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="https://wallpaperaccess.com/full/693425.jpg" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="https://i.pinimg.com/originals/bf/16/a6/bf16a658662656209bcaacaa76ca771a.jpg" style="width:100%">
+        </div>
+        
+    </div>
+
+    <!--info-->
+    <div style="display: flex;align-items: center;">
+        <hr style="width: 25%;height: 10px; background-color: #000000;margin-right: 10px;margin-bottom: 15px;" noshade="">
+        <h2 style="text-align:center;font-size: 44px;line-height: 1;color: black;margin-bottom: 10px;margin-top: 26px;">Get More With Premium</h2>
+        <hr style="width: 25%;height: 10px; background-color: #000000;margin-left: 10px;margin-bottom: 15px;" noshade="">
+    </div>
+
+    <!--price-->
+    <div class="columns">
+        <ul class="price">
+            <li class="header">Fan</li>
+            <li style="font-size: 24px;">$ <b>0.99 / month</b></li>
+            <li>No ADS</li>
+            <li>Unlimited access to Comic</li>
+            <li>New episode will lauch after 3 hours</li>
+            <li>One device at a time</li>
+            <li><a href="signup.html" class="button">Get Now</a></li>
+        </ul>
+    </div>
+
+    <div class="columns">
+        <ul class="price">
+            <li class="header" style="background-color:#4400ff9a">Mega Fan</li>
+            <li style="font-size: 24px;">$ <b>10.00 / year</b></li>
+            <li>No ADS</li>
+            <li>Unlimited access to Comic</li>
+            <li>New episode will lauch after 1 hours</li>
+            <li>Four device at a time</li>
+            <li><a href="signup.html" class="button">Get Now</a></li>
+        </ul>
+    </div>
+
+    <div class="columns" style="color: white;">
+        <ul class="price">
+            <li class="header" style="background-color:#2ee65ce0">Otaku</li>
+            <li style="font-size: 24px;">$ <b>18.00 / year</b></li>
+            <li>No ADS</li>
+            <li>Unlimited access to Comic</li>
+            <li>New episode will lauch Instantly</li>
+            <li>Unlimited device!</li>
+            <li><a href="signup.html" class="button">Get Now</a></li>
+        </ul>
+    </div>
+
+    <hr style="color: #000000;width: 90%;height: 10px;background-color: #000000;" noshade>
+
+</body>
+
+</html>
