@@ -1,0 +1,354 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Account</title>
+    <!--external css-->
+    <link rel="stylesheet" href="CSS/topNav.css">
+    <link rel="stylesheet" href="myaccount.css">
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            background-image: linear-gradient(135deg, #FAB2FF 20%, #1904E5 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #000000;
+        }
+
+        .column1 img {
+            margin-top: 8px;
+            vertical-align: middle;
+            border-radius: 20px;
+        }
+
+        .row1 {
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            border: none;
+        }
+
+        .column1 {
+            flex: 20%;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--TOP NAVIGATION -->
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" hidden>
+            <symbol id="arrow" viewbox="0 0 16 16">
+                <polyline points="4 6, 8 10, 12 6" stroke="#000" stroke-width="2" fill="transparent"
+                    stroke-linecap="round" />
+            </symbol>
+        </svg>
+        <nav id="site-navigation" class="site-navigation" aria-label="Clickable Menu Demonstration">
+            <ul class="main-menu clicky-menu no-js">
+                <li>
+                    <a href="index.html">ComicVerse</a>
+                </li>
+                <li>
+                    <a href="#">COMMUNITY
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="https://www.Facebook.com">Follow on Facebook</a></li>
+                        <li><a href="https://www.Discord.com">Follow on Discord</a></li>
+                        <li><a href="https://www.Reddit.com">Follow on Reddit</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">POPULAR
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="index.html">NEW & TRENDINGS</a></li>
+                        <li><a href="browser.html">ORIGINAL BY GENRES</a></li>
+                        <li><a href="browser.html">CANVAS BY GENRES</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="browser.html">BROWSE</a>
+                </li>
+                <li>
+                    <a href="myaccount.html">My Account</a>
+                </li>
+                <li>
+                    <a href="#">JOIN US
+                        <svg aria-hidden="true" width="16" height="16">
+                            <use xlink:href="#arrow" />
+                        </svg>
+                    </a>
+                    <ul>
+                        <li><a href="login.html">LOGIN</a></li>
+                        <li><a href="signup.html">SIGN UP</a></li>
+                        <li><a href="pricing.html">SUBSCRIBE COMICVERSE</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <script>
+
+            (function () {
+
+                'use strict';
+
+                const ClickyMenus = function (menu) {
+
+                    // DOM element(s)
+                    let container = menu.parentElement,
+                        currentMenuItem,
+                        i,
+                        len;
+
+                    this.init = function () {
+                        menuSetup();
+                        document.addEventListener('click', closeOpenMenu);
+                    }
+                    function toggleOnMenuClick(e) {
+
+                        const button = e.currentTarget;
+
+                        if (currentMenuItem && button !== currentMenuItem) {
+                            toggleSubmenu(currentMenuItem);
+                        }
+
+                        toggleSubmenu(button);
+
+                    };
+
+                    function toggleSubmenu(button) {
+
+                        const submenu = document.getElementById(button.getAttribute('aria-controls'));
+
+                        if ('true' === button.getAttribute('aria-expanded')) {
+
+                            button.setAttribute('aria-expanded', false);
+                            submenu.setAttribute('aria-hidden', true);
+                            currentMenuItem = false;
+
+                        } else {
+
+                            button.setAttribute('aria-expanded', true);
+                            submenu.setAttribute('aria-hidden', false);
+                            preventOffScreenSubmenu(submenu);
+                            currentMenuItem = button;
+
+                        }
+
+                    };
+
+                    function preventOffScreenSubmenu(submenu) {
+
+                        const screenWidth = window.innerWidth ||
+                            document.documentElement.clientWidth ||
+                            document.body.clientWidth,
+                            parent = submenu.offsetParent,
+                            menuLeftEdge = parent.getBoundingClientRect().left,
+                            menuRightEdge = menuLeftEdge + submenu.offsetWidth;
+
+                        if (menuRightEdge + 32 > screenWidth) { // adding 32 so it's not too close
+                            submenu.classList.add('sub-menu--right');
+                        }
+
+                    }
+
+                    function closeOnEscKey(e) {
+
+                        if (27 === e.keyCode) {
+
+                            // we're in a submenu item
+                            if (null !== e.target.closest('ul[aria-hidden="false"]')) {
+                                currentMenuItem.focus();
+                                toggleSubmenu(currentMenuItem);
+
+                                // we're on a parent item
+                            } else if ('true' === e.target.getAttribute('aria-expanded')) {
+                                toggleSubmenu(currentMenuItem);
+                            }
+
+                        }
+
+                    }
+
+                    function closeOpenMenu(e) {
+
+                        if (currentMenuItem && !e.target.closest('#' + container.id)) {
+                            toggleSubmenu(currentMenuItem);
+                        }
+
+                    };
+
+                    function menuSetup() {
+
+                        menu.classList.remove('no-js');
+
+                        menu.querySelectorAll('ul').forEach((submenu) => {
+
+                            const menuItem = submenu.parentElement;
+
+                            if ('undefined' !== typeof submenu) {
+
+                                let button = convertLinkToButton(menuItem);
+
+                                setUpAria(submenu, button);
+
+                                // bind event listener to button
+                                button.addEventListener('click', toggleOnMenuClick);
+                                menu.addEventListener('keyup', closeOnEscKey);
+
+                            }
+
+                        });
+
+                    };
+                    function convertLinkToButton(menuItem) {
+
+                        const link = menuItem.getElementsByTagName('a')[0],
+                            linkHTML = link.innerHTML,
+                            linkAtts = link.attributes,
+                            button = document.createElement('button');
+
+                        if (null !== link) {
+
+                            // set button content and attributes
+                            button.innerHTML = linkHTML.trim();
+                            for (i = 0, len = linkAtts.length; i < len; i++) {
+                                let attr = linkAtts[i];
+                                if ('href' !== attr.name) {
+                                    button.setAttribute(attr.name, attr.value);
+                                }
+                            }
+
+                            menuItem.replaceChild(button, link);
+
+                        }
+
+                        return button;
+
+                    }
+
+                    function setUpAria(submenu, button) {
+
+                        const submenuId = submenu.getAttribute('id');
+
+                        let id;
+                        if (null === submenuId) {
+                            id = button.textContent.trim().replace(/\s+/g, '-').toLowerCase() + '-submenu';
+                        } else {
+                            id = menuItemId + '-submenu';
+                        }
+
+                        // set button ARIA
+                        button.setAttribute('aria-controls', id);
+                        button.setAttribute('aria-expanded', false);
+
+                        // set submenu ARIA
+                        submenu.setAttribute('id', id);
+                        submenu.setAttribute('aria-hidden', true);
+
+                    }
+
+                }
+
+                /* Create a ClickMenus object and initiate menu for any menu with .clicky-menu class */
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menus = document.querySelectorAll('.clicky-menu');
+
+                    menus.forEach(menu => {
+
+                        let clickyMenu = new ClickyMenus(menu);
+                        clickyMenu.init();
+
+                    });
+                });
+
+            }());
+        </script>
+    </div>
+
+    <br>
+    <div class="container">
+        <header>
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </header>
+        <main>
+            <div class="row">
+                <div class="left col-lg-4">
+                    <div class="photo-left">
+                        <img class="photo"
+                            src="https://qph.cf2.quoracdn.net/main-qimg-dc6b9acf9c3864f102f74d6655f08cad-pjlq" />
+                    </div>
+                    <h4 class="name" style="margin-bottom: 0px;margin-top: 10px;">Doctor Souls</h4>
+                </div>
+                <div class="right col-lg-8">
+                    <ul class="nav" style="margin-top: 0px;margin-bottom: 5px;position: absolute;">
+                        <li style="margin-top: 10px;">Recents</li>
+                        <li style="margin-top: 10px;">Watch List</li>
+                    </ul>
+                    <br>
+                    <div class="row1" style="margin-top: 2%;">
+                        <div class="column1">
+                            <img src="https://wallsbazar.com/wp-content/uploads/2021/12/Chainsaw-Man-Wallpaper.jpg"
+                                style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpaperaccess.com/full/1083782.png" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="Images/5.jpg" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://i.pinimg.com/originals/25/0f/b6/250fb6cc8daf145c13901b0f107260ee.jpg"
+                                style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpaper.dog/large/987495.jpg" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpaperaccess.com/full/17350.jpg" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpapercave.com/wp/wp4584994.jpg" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="row1" style="margin-top: 2%;">
+                        <div class="column1">
+                            <img src="https://nntheblog.com/wp-content/uploads/2021/10/Prison-school-season-2.jpg"
+                                style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpaperaccess.com/full/31260.png" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://i.pinimg.com/originals/29/21/61/292161866ea60cb8995d44aaba1ec84a.jpg"
+                                style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://wallpaperaccess.com/full/1099445.png" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://images4.alphacoders.com/637/637345.jpg" style="width:100%">
+                        </div>
+                        <div class="column1">
+                            <img src="https://images.alphacoders.com/229/229931.jpg" style="width:100%">
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
